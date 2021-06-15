@@ -4,5 +4,5 @@ import Fruits.Fruit
 
 abstract class ovalShapedFruit extends Fruit{
 
-  override var subType: String = "oval shape"
+  Type+="oval shaped"
 }

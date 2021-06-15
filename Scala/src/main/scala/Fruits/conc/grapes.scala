@@ -3,8 +3,9 @@ package Fruits.conc
 import Fruits.abs.tinyFruit
 
 class grapes(n: String, w: Int) extends tinyFruit {
-  override var Type : String = "grapes"
-  override var name: String = n+" "+Type
+  val cate = "grapes"
+  Type+=cate
+  override var name: String = n+" "+cate
   override var weight: Int = w
   override var color: String = "green"
 
