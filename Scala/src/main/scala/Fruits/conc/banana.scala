@@ -9,6 +9,5 @@ class banana(n: String, w: Int) extends elongatedFruit {
   override var color: String = "yellow"
 
   override def eat(): Unit = println("eating banana ... yummy !")
-  override def display(): Unit = println("Hi I'm banana")
 
 }
