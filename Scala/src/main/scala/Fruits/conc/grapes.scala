@@ -9,6 +9,5 @@ class grapes(n: String, w: Int) extends tinyFruit {
   override var color: String = "green"
 
   override def eat(): Unit = println("eating grapes ... yummy !")
-  override def display(): Unit = println("Hi I'm grapes")
 
 }
