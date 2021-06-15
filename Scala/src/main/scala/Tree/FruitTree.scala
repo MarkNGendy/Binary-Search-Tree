@@ -16,7 +16,7 @@ class FruitTree{
   def filterByWeight(weight: Int): Unit = tree.getElements.filter(_.weight>=weight).foreach(print)
 
   def magnifyByType(Type :String, weight :Int): Unit ={
-    val l = tree.getElements
+    val l = tree.getElem
     tree=new BST[Int,Fruit]
     for(f<-l){
       if(f.Type.contains(Type)) f.weight+=weight
@@ -37,7 +37,6 @@ class FruitTree{
       i+=1
     }
   }
-
 }
 
 object test{

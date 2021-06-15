@@ -12,6 +12,13 @@ class BST[K, V](implicit ord: Ordering[K]) {
   private var root: Tree[K, V] = Leaf
 
   var list = new ListBuffer[V]
+  var list2 = new ListBuffer[V]
+
+  def getElem(): List[V] ={
+    list2= new ListBuffer[V]
+    trav(root)
+    list2.toList
+  }
 
   def getElements(): List[V] ={
 
@@ -20,6 +27,7 @@ class BST[K, V](implicit ord: Ordering[K]) {
     list.toList
 
   }
+
 
   def insert(k: K, v: V): Unit = {
     this.root = ins(root, k, v);
@@ -35,13 +43,35 @@ class BST[K, V](implicit ord: Ordering[K]) {
     max(this.root)
   }
 
-  private def traverse(t : Tree[K,V]): Boolean = t match {
-    case Leaf => true
+  private def traverse(t : Tree[K,V]): Unit = t match {
+    case Leaf =>
     case Node(l,r,k,v) =>
       traverse(l)
       list+=v
       traverse(r)
-      true
+  }
+
+  private def trav(t: Tree[K,V]): Unit = t match {
+    case Leaf=>
+    case Node(l,r,k,v) =>
+    var q = mutable.Queue[Tree[K,V]]()
+    q.enqueue(t)
+    while (!q.isEmpty){
+      var tem = q.dequeue()
+      tem match {
+        case Node(l,r,k,v)=>
+          list2+=v
+          l match {
+            case Node(le,r,k,v) => q.enqueue(l)
+            case Leaf =>
+          }
+          r match {
+            case Node(l,re,k,v) => q.enqueue(r)
+            case Leaf =>
+          }
+        case Leaf =>
+      }
+    }
   }
 
 
