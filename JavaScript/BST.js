@@ -1,8 +1,3 @@
-var types = require('./Fruit');
-let x = types.Fruit;
-var orange = Object.create(x);
-orange.weight = 5;
-console.log(orange);
 
 
 var BinarySearchTree = function(value) {
@@ -16,42 +11,113 @@ var BinarySearchTree = function(value) {
 BinarySearchTree.prototype.insert = function(value) {
     var node = BinarySearchTree(value);
     function traverse(tree) {
-        if(tree.root.getWeight() > value.getWeight() && tree.left === undefined) {
+        if(tree.root.weight > value.weight && tree.left === undefined) {
             tree.left = node;
-        } else if(tree.root.getWeight() > value.getWeight()) {
+        } else if(tree.root.weight > value.weight) {
             traverse(tree.left);
-        } else if(tree.root.getWeight() < value.getWeight() && tree.right === undefined) {
+        } else if(tree.root.weight < value.weight && tree.right === undefined) {
             tree.right = node;
-        } else if(tree.root.getWeight() < value.getWeight()) {
+        } else if(tree.root.weight < value.weight) {
             traverse(tree.right);
         }
     }
     traverse(this);
 }
 
-// var orange = Object.create(Fruit);
-// orange.setWeight(5);
-// orange.setColour("orange");
-// orange.setType("Oval-Shaped");
+BinarySearchTree.prototype.checkType = function(node, type) {
+    if(node.type.includes(type)) {
+        node.print(node.weight);
+    }
+}
 
-// var banana = Object.create(Fruit);
-// banana.setWeight(2);
-// banana.setColour("orange");
-// banana.setType("Oval-Shaped");
+BinarySearchTree.prototype.checkWeight = function(node, weight) {
+    if(node.weight > weight) {
+         node.print(node.weight);
+    }
+}
 
-// var apple = Object.create(Fruit);
-// apple.setWeight(3);
-// apple.setColour("red");
-// apple.setType("circular");
 
-// var carrot = Object.create(Fruit);
-// carrot.setWeight(7);
-// carrot.setColour("sd");
-// carrot.setType("no typr");
+BinarySearchTree.prototype.iterate = function() {
+    function inOrderTraverse(tree) {
+        if(tree == null || tree.root == null) {
+            return null;
+        }
+        inOrderTraverse(tree.left);
+        tree.root.print(tree.root.weight);
+        inOrderTraverse(tree.right);
+    }
+    inOrderTraverse(this);
+}
 
-// var tree = BinarySearchTree(orange);
-//  tree.insert(banana);
-//  //console.log(tree);
-//  tree.insert(apple);
-//  tree.insert(carrot);
-//  console.log(tree);
+BinarySearchTree.prototype.filterByType = function(type, checkType) {
+    function inOrderTraverse(tree) {
+        if(tree == null || tree.root == null) {
+            return null;
+        }
+        inOrderTraverse(tree.left);
+        checkType(tree.root, type);
+        inOrderTraverse(tree.right);
+    }
+    inOrderTraverse(this);
+}
+
+BinarySearchTree.prototype.filterByWeight = function(weight, checkWeight) {
+    function inOrderTraverse(tree) {
+        if(tree == null || tree.root == null) {
+            return null;
+        }
+        inOrderTraverse(tree.left);
+        checkWeight(tree.root, weight);
+        inOrderTraverse(tree.right);
+    }
+    inOrderTraverse(this);
+}
+
+BinarySearchTree.prototype.magnifyByType = function(type, weight) {
+    var list = [];
+    function inOrderTraverse(tree) {
+        if(tree == null || tree.root == null) {
+            return null;
+        }
+        inOrderTraverse(tree.left);
+        list.push(tree.root);
+        inOrderTraverse(tree.right);
+    }
+    inOrderTraverse(this);
+    for(var i = 0; i < list.length; i++) {
+        if(list[i].type.includes(type)) {
+            list[i].weight += weight; 
+        }
+    }
+    var newTree = BinarySearchTree(list[0]);
+    for(var i = 1; i < list.length; i++) {
+        newTree.insert(list[i]);
+    }
+    return newTree;
+}
+
+BinarySearchTree.prototype.findHeaviest = function() {
+    function getMostRight(tree) {
+        if(tree.right === undefined) {
+            return tree.root;
+        }
+        return getMostRight(tree.right);
+    }
+    return getMostRight(this);
+}
+
+BinarySearchTree.prototype.findLightest = function() {
+    function getMostLeft(tree) {
+        if(tree.left === undefined) {
+            return tree.root;
+        }
+        return getMostLeft(tree.right);
+    }
+    return getMostLeft(this);
+}
+
+module.exports = {
+    BinarySearchTree : BinarySearchTree
+}
+
+
