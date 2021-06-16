@@ -3,8 +3,9 @@ package Fruits.conc
 import Fruits.abs.elongatedFruit
 
 class banana(n: String, w: Int) extends elongatedFruit {
-  override var Type : String = "banana"
-  override var name: String = n+" "+Type
+  val cate = "banana"
+  Type+=cate
+  override var name: String = n+" "+cate
   override var weight: Int = w
   override var color: String = "yellow"
 

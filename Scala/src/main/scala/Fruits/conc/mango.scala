@@ -3,8 +3,9 @@ package Fruits.conc
 import Fruits.abs.uniSeed
 
 class mango(n: String, w: Int) extends uniSeed {
-  override var Type : String = "mango"
-  override var name: String = n+" "+Type
+  val cate = "mango"
+  Type+=cate
+  override var name: String = n+" "+cate
   override var weight: Int = w
   override var color: String = "green"
 
