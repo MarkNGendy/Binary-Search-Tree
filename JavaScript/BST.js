@@ -26,13 +26,13 @@ BinarySearchTree.prototype.insert = function(value) {
 
 BinarySearchTree.prototype.checkType = function(node, type) {
     if(node.type.includes(type)) {
-        node.print(node.weight);
+        node.print();
     }
 }
 
 BinarySearchTree.prototype.checkWeight = function(node, weight) {
     if(node.weight > weight) {
-         node.print(node.weight);
+         node.print();
     }
 }
 
