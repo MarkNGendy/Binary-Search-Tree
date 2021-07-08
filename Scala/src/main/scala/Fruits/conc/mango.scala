@@ -11,4 +11,5 @@ class mango(n: String, w: Int) extends uniSeed {
 
   override def eat(): Unit = println("eating mangoo ... yummy !")
 
+
 }

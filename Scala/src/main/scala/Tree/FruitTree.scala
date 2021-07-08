@@ -24,9 +24,9 @@ class FruitTree{
     }
   }
 
-  def findHeaviest : Option[Fruit] = tree.max
+  def findHeaviest : Fruit = tree.max
 
-  def findLightest : Option[Fruit] = tree.min
+  def findLightest : Fruit = tree.min
 
   def getFruits : List[Fruit] = tree.getElements
 

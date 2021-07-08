@@ -10,4 +10,5 @@ class cherry(n: String, w: Int) extends tinyFruit {
   override var color: String = "red"
 
   override def eat(): Unit = println("eating cherry ... yummy !")
+
 }

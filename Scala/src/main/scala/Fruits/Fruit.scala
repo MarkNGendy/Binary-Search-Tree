@@ -8,7 +8,7 @@ trait Fruit{
   var color : String
   var Type : ListBuffer[String] = new ListBuffer[String]
 
-  def display(): Unit ={
+  def disp(): Unit ={
     println("I'm "+name+" my weight is: "+weight+" and my color is: "+color);
   }
 

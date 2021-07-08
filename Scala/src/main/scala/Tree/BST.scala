@@ -35,11 +35,11 @@ class BST[K, V](implicit ord: Ordering[K]) {
 
 
 
-  def min(): Option[V] = {
+  def min(): V = {
     min(this.root)
   }
 
-  def max(): Option[V] = {
+  def max(): V = {
     max(this.root)
   }
 
@@ -89,19 +89,17 @@ class BST[K, V](implicit ord: Ordering[K]) {
   }
 
 
-  private def min(t: Tree[K, V]): Option[V] = t match {
+  private def min(t: Tree[K, V]): V = t match {
     case Node(l, _, _, v) => l match {
-      case Leaf => Some(v)
+      case Leaf => v
       case Node(_,_,_,_) => min(l)
     }
-    case Leaf => None
   }
 
-  private def max(t: Tree[K, V]): Option[V] = t match {
+  private def max(t: Tree[K, V]): V = t match {
     case Node(_, r, _, v) => r match {
-      case Leaf => Some(v)
+      case Leaf => v
       case Node(_,_,_,_) => max(r)
     }
-    case Leaf => None
   }
 }

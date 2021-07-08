@@ -11,4 +11,5 @@ class peach(n: String, w: Int) extends uniSeed {
 
   override def eat(): Unit = println("eating peach ... yummy !")
 
+
 }

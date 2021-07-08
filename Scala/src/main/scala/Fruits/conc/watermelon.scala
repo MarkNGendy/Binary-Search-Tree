@@ -11,4 +11,5 @@ class watermelon(n: String, w: Int) extends manySeeds {
 
   override def eat(): Unit = println("eating watermelon ... yummy !")
 
+
 }

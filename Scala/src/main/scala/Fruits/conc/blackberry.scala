@@ -10,4 +10,5 @@ class blackberry(n: String, w: Int) extends berry{
   override var color: String = "black"
 
   override def eat(): Unit = println("eating blueberry ... yummy !")
+
 }
