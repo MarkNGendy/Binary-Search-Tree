@@ -12,6 +12,8 @@ trait Fruit{
     println("I'm "+name+" my weight is: "+weight+" and my color is: "+color);
   }
 
-  def eat()
+  def eat(): Unit ={
+    println("EATING. . .")
+  }
 
 }

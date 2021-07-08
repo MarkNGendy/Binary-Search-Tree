@@ -62,11 +62,13 @@ object garden {
     println("\nheaviest:")
     tree.findHeaviest match {
       case fruit: Fruit => fruit.disp()
+        fruit.eat()
     }
 
     println("\nlightest:")
     tree.findLightest match {
       case fruit: Fruit => fruit.disp()
+        fruit.eat()
     }
 
     tree.magnifyByType("berry",100)
@@ -81,6 +83,7 @@ object garden {
     println("\nheaviest:")
     tree.findHeaviest match {
       case fruit: Fruit => fruit.disp()
+        fruit.eat()
     }
 
   }
