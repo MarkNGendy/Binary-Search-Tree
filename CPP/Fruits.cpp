@@ -371,7 +371,7 @@ void Tree::filterByType(Fruit* root,string type){
 }
 int main(){
     Tree *b=new Tree();
-     b->insert(new Fruit(50));
+     b->insert(new Watermelon(50));
      b->insert(new Mango(30));
      b->insert(new Grapes(20));
      b->insert(new Blueberries(40));
@@ -388,10 +388,8 @@ int main(){
      b->filterByWeight(50);
      cout<<"\n\n>>>>>>>>>>>>>>>>Test FilterByType [Tiny]<<<<<<<<<<<<<\n";
      b->filterByType("Tiny");
-     cout<<"\n\n>>>>>>>>>>>>>>>>Test FilterByType [UniSeeds] <<<<<<<<<<<<<\n";
-     b->filterByType("UniSeeds");
      cout<<"\n\n>>>>>>>>>>>>>>>>Test MagnifyByType <<<<<<<<<<<<<\n";
-     b->magnifyByType("Tiny",40);
+     b->magnifyByType("ManySeeds",40);
      b->Iterate();
     return 0;
 }
