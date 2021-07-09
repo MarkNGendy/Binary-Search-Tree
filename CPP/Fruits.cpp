@@ -1,6 +1,6 @@
 #include <string.h>
 #include "Fruit.h"
-#include <list>
+#include <bits/stdc++.h>
 using namespace std;
 
 Fruit ::Fruit()
@@ -146,50 +146,98 @@ void Fruit:: setRight(Fruit* right){
 string Fruit:: getType(){
     return "Fruit";
 }
+void Fruit :: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
+}
 string OvalShapedFruits:: getType(){
     return "Oval Fruit";
+}
+void OvalShapedFruits :: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
 }
 string TinyFruits:: getType(){
     return "Tiny Fruit";
 }
+void TinyFruits :: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
+}
 string ManySeedsFruits:: getType(){
     return "ManySeeds Fruit";
+}
+void ManySeedsFruits :: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
 }
 string UniSeedsFruits:: getType(){
     return "UniSeeds Fruit";
 }
+void UniSeedsFruits:: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
+}
 string Berry:: getType(){
     return "Berry Tiny Fruit";
+}
+void Berry :: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
 }
 string ElongatedFruits:: getType(){
     return "Elongated Fruit";
 }
+void ElongatedFruits :: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
+}
 string Mango:: getType(){
     return "Mango Uniseeds Oval Fruit";
+}
+void Mango:: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
 }
 string Apples:: getType(){
     return "Apple ManySeeds Oval Fruit";
 }
+void Apples:: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
+}
 string Watermelon:: getType(){
     return "Watermelon ManySeeds Oval Fruit";
+}
+void Watermelon :: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
 }
 string Grapes:: getType(){
     return "Grape Tiny ManySeeds Fruit";
 }
+void Grapes :: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
+}
 string Banana:: getType(){
     return "Banana Elongated Fruit";
+}
+void Banana :: eat(){
+    cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
 }
 string Blackberries:: getType(){
     return "Blackberries Berry Tiny Fruit";
 }
+void Blackberries :: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
+}
 string Blueberries:: getType(){
     return "Blueberries Berry Tiny Fruit";
+}
+void Blueberries :: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
 }
 string Elderberries:: getType(){
     return "Elderberries Berry Tiny Fruit";
 }
+void Elderberries :: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
+}
 string Avocado :: getType(){
     return "Avocado UniSeeds Oval Fruit";
+}
+void Avocado:: eat(){
+cout<<"My Type is "<< this->getType() << " and My Weight is "<<this->getWeight()<<"\n";
 }
 void Tree::insert(Fruit* leaf)
 {    
@@ -225,23 +273,29 @@ void Tree ::Iterate(Fruit* node)
         return;
     }
     Iterate(node->left);
-    cout << node->getWeight() << endl;
+    cout<<"My Type is "<< node->getType() << " and My Weight is "<<node->getWeight()<<"\n";
     Iterate(node->right);
 }
 
-Fruit* Tree::findHeaviest(Fruit* root){
+void Tree::findHeaviest(Fruit* root){
     while(root->right)
     {
         root=root->right;
     }
-    return root;
+   cout<<"Heaviest : My Type is "<< root->getType() << " and My Weight is "<<root->getWeight()<<"\n";
 }
-Fruit* Tree::findLightest(Fruit* root){
+void Tree::findHeaviest(){
+    findHeaviest(root);
+}
+void Tree::findLightest(Fruit* root){
     while(root->left)
     {
         root=root->left;
     }
-    return root;
+    cout<<"Lightest : My Type is "<< root->getType() << " and My Weight is "<<root->getWeight()<<"\n";
+}
+void Tree::findLightest(){
+    findLightest(root);
 }
 Fruit* Tree::search(Fruit* root,int weight){
 		while (root) {
@@ -264,11 +318,44 @@ void Tree::filterByWeight(Fruit* root,int weight){
     }
     filterByWeight(root->left,weight);
     if(root->getWeight()>weight){
-        cout << root->getWeight() << endl;
+       cout<<"My Type is "<< root->getType() << " and My Weight is "<<root->getWeight()<<"\n";
     }
     filterByWeight(root->right,weight);
 }
+void Tree::magnifyByType(string type,int weight,Fruit* r,vector<Fruit*>& lst)
+{
+    if (r == NULL)  return;
+    queue<Fruit *> q;
+    q.push(r);
+    while (q.empty() == false)
+    {
+        Fruit *node = q.front();
+         if(node->getType().find(type) != string::npos){
+        node->setWeight(node->getWeight()+weight);
+        }
+        lst.push_back(node);
+        
+        if (node->left != NULL)
+            q.push(node->left);
 
+        if (node->right != NULL)
+            q.push(node->right);
+        q.pop();
+    }
+    
+}
+void Tree::magnifyByType(string type,int weight)
+{
+    vector<Fruit*> lst;
+    magnifyByType(type,weight,root,lst);
+    root =NULL;
+    for(Fruit* i : lst)
+    {
+        i->setLeft(NULL);
+        i->setRight(NULL);
+        this->insert(i);
+    }
+}
 void Tree::filterByType(string type){
      filterByType(root,type);
 }
@@ -278,31 +365,33 @@ void Tree::filterByType(Fruit* root,string type){
     }
     filterByType(root->left,type);
     if(root->getType().find(type) != string::npos){
-        cout << root->getWeight() << "\n";
+        cout<<"My Type is "<< root->getType() << " and My Weight is "<<root->getWeight()<<"\n";
     }
     filterByType(root->right,type);
 }
 int main(){
     Tree *b=new Tree();
-    Mango* M=new Mango(30);
-    Grapes* G = new Grapes(20);
-    Blueberries* B = new Blueberries(40);
-     Blackberries* Bl = new Blackberries(70);
-     Avocado* a = new Avocado(60);
-     Banana* ba=new Banana(80);
      b->insert(new Fruit(50));
-     b->insert(M);
-     b->insert(G);
-     b->insert(B);
-     b->insert(Bl);
-     b->insert(a);
-     b->insert(ba);
-     //b->Iterate();
-      
-    b->filterByType("Fruit");
-    //Fruit* test=b.findHeaviest(root);
-    //Fruit* test2=b.findLightest(root);
-    //cout << "highest"<<test->getWeight()<<" lightest"<<test2->getWeight();
-    //b.Iterate(root);
+     b->insert(new Mango(30));
+     b->insert(new Grapes(20));
+     b->insert(new Blueberries(40));
+     b->insert(new Blackberries(70));
+     b->insert(new Avocado(65));
+     b->insert(new Banana(90));
+     cout<<" >>>>>>>>>Test Iterate<<<<<<<<<<\n";
+     b->Iterate();
+     cout<<"\n\n>>>>>>>>>>>Test FindHeaviest<<<<<<<<<<<<<\n";
+     b->findHeaviest();
+     cout<<"\n\n>>>>>>>>>>>>>>Test FindLightest <<<<<<<<<<<<<<<<<<<\n" ;
+     b->findLightest();
+     cout<<"\n\n>>>>>>>>>>>>>>>>Test FilterByWeight <<<<<<<<<<<<<\n";
+     b->filterByWeight(50);
+     cout<<"\n\n>>>>>>>>>>>>>>>>Test FilterByType [Tiny]<<<<<<<<<<<<<\n";
+     b->filterByType("Tiny");
+     cout<<"\n\n>>>>>>>>>>>>>>>>Test FilterByType [UniSeeds] <<<<<<<<<<<<<\n";
+     b->filterByType("UniSeeds");
+     cout<<"\n\n>>>>>>>>>>>>>>>>Test MagnifyByType <<<<<<<<<<<<<\n";
+     b->magnifyByType("Tiny",40);
+     b->Iterate();
     return 0;
 }
